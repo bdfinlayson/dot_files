@@ -733,6 +733,160 @@ alias rnews='cd /code/ruby_news_reader/; ruby news_reader;'
 # Generate new fingerprint for github ssh agent
 alias newssh='eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_rsa_github'
 
+
+######################################
+######################################
+######################################
+######## OS COMMANDS
+#####################################
+######################################
+######################################
+
+alias fireworks="open -a '/Applications/Adobe Fireworks CS3/Adobe Fireworks CS3.app'"
+alias photoshop="open -a '/Applications/Adobe Photoshop CS3/Adobe Photoshop.app'"
+alias preview="open -a '$PREVIEW'"
+alias xcode="open -a '/Applications/XCode.app'"
+alias filemerge="open -a '/Developer/Applications/Utilities/FileMerge.app'"
+alias safari="open -a safari"
+alias firefox="open -a firefox"
+alias chrome="open -a google\ chrome"
+alias chromium="open -a chromium"
+alias dashcode="open -a dashcode"
+alias f='open -a Finder '
+alias fh='open -a Finder .'
+alias textedit='open -a TextEdit'
+alias hex='open -a "Hex Fiend"'
+alias skype='open -a Skype'
+alias mou='open -a Mou'
+
+if [ -s /usr/bin/firefox ] ; then
+  unalias firefox
+fi
+
+
+######################################
+######################################
+######################################
+######## BUNDLER COMMANDS
+#####################################
+######################################
+######################################
+
+alias be='bundle exec'
+alias bi='bundle install'
+alias bl='bundle list'
+alias bu='bundle update'
+alias bp='bundle package'
+
+
+######################################
+######################################
+######################################
+######## RAILS COMMANDS
+#####################################
+######################################
+######################################
+
+alias r='rails'
+alias rg='rails g'
+alias rs='rails s'
+alias rc='rails c'
+alias rn='rails new'
+alias rb='rails dbconsole'
+alias rp='rails plugin'
+alias ra='rails application'
+alias rd='rails destroy'
+alias dbm='rake db:migrate'
+
+alias ss='script/server'
+alias ts="thin start"     # thin server
+alias sc='script/console'
+alias restartapp='touch tmp/restart.txt'
+alias restart='touch tmp/restart.txt'  # restart passenger
+alias devlog='tail -f log/development.log'
+alias taild='tail -f log/development.log' # tail dev log
+
+
+######################################
+######################################
+######################################
+######## GIT ALIASES
+#####################################
+######################################
+######################################
+
+# Aliases
+alias gcl='git clone'
+alias ga='git add'
+alias gall='git add .'
+alias gus='git reset HEAD'
+alias gm="git merge"
+alias g='git'
+alias get='git'
+alias gst='git status'
+alias gs='git status'
+alias gss='git status -s'
+alias gl='git pull'
+alias gpr='git pull --rebase'
+alias gpp='git pull && git push'
+alias gup='git fetch && git rebase'
+alias gp='git push'
+alias gpo='git push origin'
+alias gdv='git diff -w "$@" | vim -R -'
+alias gd='git diff'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gcm='git commit -v -m'
+alias gci='git commit --interactive'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gcount='git shortlog -sn'
+alias gcp='git cherry-pick'
+alias gco='git checkout'
+alias gexport='git archive --format zip --output'
+alias gdel='git branch -D'
+alias gmu='git fetch origin -v; git fetch upstream -v; git merge upstream/master'
+alias gll="git log --graph --pretty=oneline --abbrev-commit --date=relative"
+alias gg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias ggs="gg --stat"
+alias gsl="git shortlog -sn"
+alias gw="git whatchanged"
+alias gt="git tag"
+alias gta="git tag -a"
+alias gtd="git tag -d"
+alias gtl="git tag -l"
+# From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+# Show commits since last pull
+alias gnew="git log HEAD@{1}..HEAD@{0}"
+# Add uncommitted and unstaged changes to the last commit
+alias gcaa="git commit -a --amend -C HEAD"
+
+case $OSTYPE in
+  darwin*)
+    alias gtls="git tag -l | gsort -V"
+    ;;
+  *)
+    alias gtls='git tag -l | sort -V'
+    ;;
+esac
+
+if [ -z "$EDITOR" ]; then
+    case $OSTYPE in
+      linux*)
+        alias gd='git diff | vim -R -'
+        ;;
+      darwin*)
+        alias gd='git diff | mate'
+        ;;
+      *)
+        alias gd='git diff'
+        ;;
+    esac
+else
+    alias gd="git diff | $EDITOR"
+fi
+
+
 ################################
 # BashIt aliases
 ################################
