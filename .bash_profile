@@ -53,7 +53,7 @@ parse_git_branch () {
 function prompt_command() {
   # PS1="\n${yellow}$(ruby_version_prompt) ${purple}NEVER GIVE UP ${reset_color}in ${green}\w\n${bold_cyan}$(scm_char)${green}$(scm_prompt_info) ${green}→${reset_color} "
 
-  PS1="\n\[\033[35m\]\$(/bin/date)\n${yellow}$(ruby_version_prompt) \[${BOLD}${MAGENTA}\]NEVER GIVE UP \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n$clock ${bold_cyan}$(scm_char)${green}$(scm_prompt_info) ${green}->${reset_color} \[$RESET\]"
+  PS1="\n\[\033[35m\]\d\[$(tput sgr0)\], \[\033[35m\]\@\[$(tput sgr0)\]\n${yellow}$(ruby_version_prompt) \[${BOLD}${MAGENTA}\]NEVER GIVE UP \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n$clock ${bold_cyan}$(scm_char)${green}$(scm_prompt_info) ${green}->${reset_color} \[$RESET\]"
 }
 
 PROMPT_DIRTRIM=2
