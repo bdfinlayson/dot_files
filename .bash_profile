@@ -692,7 +692,7 @@ alias cabguard='cd /workspace/caboose-web/; guard'
 
 
 # Shortcuts to Your Private Repos
-alias aliases='cd ~; vim .bash_it/aliases/enabled/general.aliases.bash'
+alias aliases='cd ~; vim .bash_profile'
 alias bashit='cd ~; vim .bash_it/'
 alias vimrc='cd ~; vim .vimrc'
 alias code='cd /code/'
@@ -703,6 +703,12 @@ alias work='cd /workspace/'
 alias book='cd /workspace/bookgrabbr-web/'
 alias caboose='cd /workspace/caboose-web/'
 alias openbook='cd /workspace/bookgrabbr-web/; vim .'
+
+
+# Coursera Shortcuts
+alias coursera='cd /workspace/coursera'
+alias machine='cd /workspace/coursera/machine_learning'
+alias jup='jupyter notebook'
 
 # Shortcuts to Applications
 alias subl='open -a /Applications/Sublime\ Text.app .'
@@ -1001,3 +1007,8 @@ export PATH
 export PATH="/Users/bryanfinlayson/anaconda/bin:$PATH"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
