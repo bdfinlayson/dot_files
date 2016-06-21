@@ -49,7 +49,6 @@ parse_git_branch () {
 #  PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
 #}
 
-
 function prompt_command() {
   # PS1="\n${yellow}$(ruby_version_prompt) ${purple}NEVER GIVE UP ${reset_color}in ${green}\w\n${bold_cyan}$(scm_char)${green}$(scm_prompt_info) ${green}→${reset_color} "
 
@@ -350,7 +349,6 @@ if [ ! -e $BASH_IT/plugins/enabled/battery.plugin.bash ]; then
     }
 fi
 
-
 ###########################
 ###########################
 ###########################
@@ -374,7 +372,6 @@ function __make_echo {
   next=$1 && shift
   echo "\033[$(__$next $@)m"
 }
-
 
 function __reset {
   next=$1 && shift
@@ -418,7 +415,6 @@ function __crossed {
   echo "${out:+${out};}8"
 }
 
-
 function __color_normal_fg {
   echo "3$1"
 }
@@ -434,7 +430,6 @@ function __color_bright_fg {
 function __color_bright_bg {
   echo "10$1"
 }
-
 
 function __color_black   {
   echo "0"
@@ -491,7 +486,6 @@ function __color {
   echo "$(__color_${mode}_${side} $(__color_${color} $rgb))${out:+;${out}}"
 }
 
-
 function __black   {
   echo "$(__color black $@)"
 }
@@ -528,7 +522,6 @@ function __rgb {
   echo "$(__color rgb $@)"
 }
 
-
 function __color_parse {
   next=$1 && shift
   echo "$(__$next $@)"
@@ -541,7 +534,6 @@ function color {
 function echo_color {
   echo "$(__color_parse make_echo $@)"
 }
-
 
 black="$(color reset black)"
 red="$(color reset red)"
@@ -630,10 +622,6 @@ echo_background_orange="$(echo_color red bg bright)"
 echo_normal="$(echo_color reset)"
 echo_reset_color="$(__make_echo '' 39)"
 
-
-
-
-
 ###########################################
 ###########################################
 ###########################################
@@ -641,7 +629,6 @@ echo_reset_color="$(__make_echo '' 39)"
 ###########################################
 ###########################################
 ###########################################
-
 
 ################################
 # YOUR CUSTOM ALIASES
@@ -690,7 +677,6 @@ alias concab='open http://confluence.metova.com/display/CAB/Caboose+Home'
 alias sshcabprod='ssh apps@54.200.227.76'
 alias cabguard='cd /workspace/caboose-web/; guard'
 
-
 # Shortcuts to Your Private Repos
 alias aliases='cd ~; vim .bash_profile'
 alias bashit='cd ~; vim .bash_it/'
@@ -703,7 +689,6 @@ alias work='cd /workspace/'
 alias book='cd /workspace/bookgrabbr-web/'
 alias caboose='cd /workspace/caboose-web/'
 alias openbook='cd /workspace/bookgrabbr-web/; vim .'
-
 
 # Coursera Shortcuts
 alias coursera='cd /workspace/coursera'
@@ -742,7 +727,6 @@ alias rnews='cd /code/ruby_news_reader/; ruby news_reader;'
 # Generate new fingerprint for github ssh agent
 alias newssh='eval "$(ssh-agent -s)"; ssh-add ~/.ssh/id_rsa_github'
 
-
 ######################################
 ######################################
 ######################################
@@ -772,7 +756,6 @@ if [ -s /usr/bin/firefox ] ; then
   unalias firefox
 fi
 
-
 ######################################
 ######################################
 ######################################
@@ -786,7 +769,6 @@ alias bi='bundle install'
 alias bl='bundle list'
 alias bu='bundle update'
 alias bp='bundle package'
-
 
 ######################################
 ######################################
@@ -814,7 +796,6 @@ alias restartapp='touch tmp/restart.txt'
 alias restart='touch tmp/restart.txt'  # restart passenger
 alias devlog='tail -f log/development.log'
 alias taild='tail -f log/development.log' # tail dev log
-
 
 ######################################
 ######################################
@@ -895,7 +876,6 @@ else
     alias gd="git diff | $EDITOR"
 fi
 
-
 ################################
 # BashIt aliases
 ################################
@@ -955,8 +935,6 @@ fi
 alias	md='mkdir -p'
 alias	rd='rmdir'
 
-
-
 #################################
 #################################
 ######## CONFIGURATION
@@ -998,17 +976,12 @@ export SCM_CHECK=true
 
 # eval "$(rbenv init -)"
 
-# Setting PATH for Python 3.5
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
-
 # Added by Dato Launcher v2.2.3
 export PATH="/Users/bryanfinlayson/anaconda/bin:$PATH"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
