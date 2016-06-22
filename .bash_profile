@@ -357,8 +357,6 @@ fi
 ###########################
 ###########################
 
-#!/usr/bin/env bash
-
 function __ {
   echo "$@"
 }
@@ -851,30 +849,30 @@ alias gnew="git log HEAD@{1}..HEAD@{0}"
 # Add uncommitted and unstaged changes to the last commit
 alias gcaa="git commit -a --amend -C HEAD"
 
-case $OSTYPE in
-  darwin*)
-    alias gtls="git tag -l | gsort -V"
-    ;;
-  *)
-    alias gtls='git tag -l | sort -V'
-    ;;
-esac
-
-if [ -z "$EDITOR" ]; then
-    case $OSTYPE in
-      linux*)
-        alias gd='git diff | vim -R -'
-        ;;
-      darwin*)
-        alias gd='git diff | mate'
-        ;;
-      *)
-        alias gd='git diff'
-        ;;
-    esac
-else
-    alias gd="git diff | $EDITOR"
-fi
+# case $OSTYPE in
+#   darwin*)
+#     alias gtls="git tag -l | gsort -V"
+#     ;;
+#   *)
+#     alias gtls='git tag -l | sort -V'
+#     ;;
+# esac
+#
+# if [ -z "$EDITOR" ]; then
+#     case $OSTYPE in
+#       linux*)
+#         alias gd='git diff | vim -R -'
+#         ;;
+#       darwin*)
+#         alias gd='git diff | mate'
+#         ;;
+#       *)
+#         alias gd='git diff'
+#         ;;
+#     esac
+# else
+#     alias gd="git diff | $EDITOR"
+# fi
 
 ################################
 # BashIt aliases
@@ -958,10 +956,10 @@ unset MAILCHECK
 export IRC_CLIENT='irssi'
 
 # Set this to the command you use for todo.txt-cli
-export TODO="t"
+# export TODO="t"
 
 # Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
+# export SCM_CHECK=true
 
 # Set vcprompt executable path for scm advance info in prompt (demula theme)
 # https://github.com/xvzf/vcprompt
@@ -976,6 +974,8 @@ export SCM_CHECK=true
 
 # eval "$(rbenv init -)"
 
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+
 # Added by Dato Launcher v2.2.3
 export PATH="/Users/bryanfinlayson/anaconda/bin:$PATH"
 
@@ -984,4 +984,12 @@ export PATH="/Users/bryanfinlayson/anaconda/bin:$PATH"
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+SSH_ENV=$HOME/.ssh/environment
+
+export EDITOR=vim
+
+# export PATH="$HOME/.rbenv/bin:$PATH"
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
