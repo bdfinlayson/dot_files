@@ -3,33 +3,52 @@
 ""
 
 " Define paths
-let g:janus_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
-let g:janus_vim_path = escape(fnamemodify(resolve(expand("<sfile>:p" . "vim")), ":h"), ' ')
+if has('win32') || has('win64') || has('win32unix')
+  let g:janus_path = expand("~/.vim/janus/vim")
+  let g:janus_vim_path = expand("~/.vim/janus/vim")
+else
+  let g:janus_path = escape(fnamemodify(resolve(expand("<sfile>:p")), ":h"), ' ')
+  let g:janus_vim_path = escape(fnamemodify(resolve(expand("<sfile>:p" . "vim")), ":h"), ' ')
+endif
 let g:janus_custom_path = expand("~/.janus")
+
+" Source janus's core
+exe 'source ' . g:janus_vim_path . '/core/before/plugin/janus.vim'
+
+" You should note that groups will be processed by Pathogen in reverse
+" order they were added.
+call janus#add_group("tools")
+call janus#add_group("langs")
+call janus#add_group("colors")
+
+""
+"" Customisations
+""
 let g:neocomplcache_enable_at_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:multi_cursor_use_default_mapping=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+      \ ['brown',       'RoyalBlue3'],
+      \ ['Darkblue',    'SeaGreen3'],
+      \ ['darkgray',    'DarkOrchid3'],
+      \ ['darkgreen',   'firebrick3'],
+      \ ['darkcyan',    'RoyalBlue3'],
+      \ ['darkred',     'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['brown',       'firebrick3'],
+      \ ['gray',        'RoyalBlue3'],
+      \ ['black',       'SeaGreen3'],
+      \ ['darkmagenta', 'DarkOrchid3'],
+      \ ['Darkblue',    'firebrick3'],
+      \ ['darkgreen',   'RoyalBlue3'],
+      \ ['darkcyan',    'SeaGreen3'],
+      \ ['darkred',     'DarkOrchid3'],
+      \ ['red',         'firebrick3'],
+      \ ]
 
+set mouse:a
 set ruler
 set showcmd
 set noerrorbells
@@ -46,12 +65,13 @@ set term=xterm-256color
 set termencoding=utf-8
 set cursorline
 set equalalways
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+"For Lusty-Explorer
+set hidden
+
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
-
-
+let g:neocomplete#enable_at_startup = 1
+let g:used_javascript_libs = 'jquery,angularjs,jasmine,chai,underscore'
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 1
@@ -68,6 +88,14 @@ let g:syntastic_style_error_symbol = ">"
 let g:syntastic_warning_symbol = "!"
 let g:syntastic_style_warning_symbol = ">"
 
+
+" RSpec.vim mappings
+map <Leader>rf :call RunCurrentSpecFile()<CR>
+map <Leader>rn :call RunNearestSpec()<CR>
+map <Leader>rl :call RunLastSpec()<CR>
+map <Leader>ra :call RunAllSpecs()<CR>
+
+
 " Source janus's core
 exe 'source ' . g:janus_vim_path . '/core/before/plugin/janus.vim'
 
@@ -83,14 +111,18 @@ call janus#add_group("colors")
 "=========================
 "***SEE VIM KEY-NOTATION IN VIM HELP FOR HELP WITH VARIOUS KEY-CODES**
 
+let mapleader = ","
+
 
 "WINDOW MANAGEMENT:
+"Toggle NerdTree
+map <leader>n :NERDTreeToggle<CR>
 "Open with grid layout view
-map <s-tab><s-g> :q<cr>:vsplit<cr>:split<cr>:wincmd l<cr>:split<cr>:wincmd h<cr>
+map <leader>4 :q<cr>:vsplit<cr>:split<cr>:wincmd l<cr>:split<cr>:wincmd h<cr>
 "Open with 2 windows horizontally split
-map <s-tab><s-o> :q<cr>:split<cr>
+map <leader>h :q<cr>:split<cr>
 "Close two of four panes and split windows horizontally
-map <s-tab><s-l> :wincmd j<cr>:q<cr>:wincmd l<cr>:wincmd j<cr>:q<cr>
+map <leader>v :wincmd j<cr>:q<cr>:wincmd l<cr>:wincmd j<cr>:q<cr>
 
 "MOVING AROUND WINDOWS:
 "Better window navigation
@@ -112,22 +144,29 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 "SAVING AND QUITTING:
 "Save all buffers
-map <s-s><s-a> :w<cr>:wincmd l<cr>:w<cr>:wincmd j<cr>:w<cr>:wincmd h<cr>:w<cr>:wincmd k<cr>
+map <leader>sa :w<cr>:wincmd l<cr>:w<cr>:wincmd j<cr>:w<cr>:wincmd h<cr>:w<cr>:wincmd k<cr>
 "Save current buffer
-map <s-s><s-b> :w<cr>
+map <leader>s :FixWhitespace<cr>:w<cr>
 "Save current buffer and quit
-map <s-s><s-q> :wq<cr>
+map <leader>wq :FixWhitespace<cr>:wq<cr>
 "Quit current window without saving
-map <s-x><s-b> :q<cr>
+map <leader>q :q<cr>
 "Quit the grid view without saving
-map <s-x><s-g> :q!<cr>:q!<cr>:q!<cr>:q!<cr>
+map <leader>qg :q!<cr>:q!<cr>:q!<cr>:q!<cr>
 "Quit the grid view and save
-map <s-s><s-g> :wq<cr>:wq<cr>:wq<cr>:wq<cr>
+map <leader>wg :wq<cr>:wq<cr>:wq<cr>:wq<cr>
 
 "SHORTCUTS:
 "FixWhitespace
-map <s-f><s-w> :FixWhitespace<cr>
+map <leader>fw :FixWhitespace<cr>
+"Paste
+map <leader>sp :set paste<cr>
+map <leader>np :set nopaste<cr>
+map <leader>ff mzgg=G`z<cr>
 
+"CTAGS
+"Tag all source files and save in .git directory
+map <leader>st :ctags -R -f ./.git/tags .<cr>
 
 "============================
 "JANUS AND VIM STUFF:
