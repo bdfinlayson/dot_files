@@ -137,6 +137,9 @@ nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :wri
 "Shit-Tab to go to the previous buffer
 nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
 
+"TOGGLE BUFFER TO FULL SCREEN
+map <leader>fa :ZoomWin<cr>
+
 "OPENING FILES:
 " Opens a new tab with the current buffer's path
 " " Super useful when editing files in the same directory
@@ -155,6 +158,9 @@ map <leader>q :q<cr>
 map <leader>qg :q!<cr>:q!<cr>:q!<cr>:q!<cr>
 "Quit the grid view and save
 map <leader>wg :wq<cr>:wq<cr>:wq<cr>:wq<cr>
+
+"COPY TO CLIPBOARD
+map <leader>c :w !pbcopy<cr>
 
 "SHORTCUTS:
 "FixWhitespace
