@@ -7,4 +7,4 @@ export EDITOR=vim
 ## #Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting ---- YOU MIGHT NEED TO REMOVE THIS 
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting ---- YOU HAD TO REMOVE THIS FROM YOUR PERSONAL COMPUTER BECAUSE OF RBENV CONFLICTS
