@@ -662,7 +662,7 @@ alias herluc='open https://dashboard.heroku.com/apps'
 alias sshlucstag='heroku run rails c --app lucro-staging'
 alias sshlucprod='heroku run rails c --app lucro-production'
 alias lucdeploystag='git push lucro-staging master; heroku run rake db:migrate:status --app lucro-staging;'
-alias lucdeployprod='git push lucro-production master; heroku run rake db:migrate:status --app lucro-production;'
+alias lucdeployprod='git push lucro-mvp master; heroku run rake db:migrate:status --app lucro-mvp;'
 alias lucmobile='cd /workspace/lucro-mobile'
 
 # Caboose Shortcuts
@@ -953,7 +953,7 @@ export GIT_HOSTING='git@git.domain.com'
 unset MAILCHECK
 
 # Change this to your console based IRC client of choice.
-export IRC_CLIENT='irssi'
+# export IRC_CLIENT='irssi'
 
 # Set this to the command you use for todo.txt-cli
 # export TODO="t"
@@ -972,24 +972,24 @@ export IRC_CLIENT='irssi'
 # source ~/.profile
 # export PATH="$HOME/.rbenv/bin:$PATH"
 
-# eval "$(rbenv init -)"
 
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
 # Added by Dato Launcher v2.2.3
-export PATH="/Users/bryanfinlayson/anaconda/bin:$PATH"
+#export PATH="/Users/bryanfinlayson/anaconda/bin:$PATH"
+
+#export PATH="/Users/bryanfinlayson/bin:$PATH"
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
+#PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+#export PATH
 
 SSH_ENV=$HOME/.ssh/environment
 
 export EDITOR=vim
 
-# export PATH="$HOME/.rbenv/bin:$PATH"
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
